@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+<!--         <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+        <title>The Monkeys test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        
+        
+        <div id="content" class="container" role="main">
+            <h1>The Monkeys test</h1>
+           
+            <form id="monkeyForm" method="get" action="#">
+              <span>* all fields are required</span>
+              <label for="firstname">First name *</label>
+              <input id="firstname" type="text" placeholder="Please enter your first name" name="firstname" required />
+              
+              <label for="surname">Surname *</label>
+              <input id="surname" type="text" placeholder="Please enter your surname" name="surname" required />
+            
+              <label for="email">Email address *</label>
+              <input id="email" type="text" placeholder="Please enter a valid email address" name="email" required />
+              
+              <label for="number">Daytime contact number *</label>
+              <input id="number" type="text" placeholder="Please enter a contact number" name="number" required />
+              
+              <label for="address">Address *</label>
+              <input id="address" type="text" placeholder="Please enter your address" name="address" required />
+              
+              <label for="suburb">Suburb *</label>
+              <input id="suburb" type="text" placeholder="Please enter your suburb" name="suburb" required />
+              
+              <label for="state">State *</label>
+              <select id="state" name="state" required>
+                <option value="">Please select a state</option>
+                <option value="ACT">ACT</option>
+                <option value="NSW">NSW</option>
+                <option value="NT">NT</option>
+                <option value="QLD">QLD</option>            
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="VIC">VIC</option>
+                <option value="WA">WA</option>
+              </select>
+              
+              <label for="postcode">Postcode *</label>
+              <input id="postcode" type="text" placeholder="Please enter your postcode" name="postcode" required />
+              
+              <label for="enquiryType">Enquiry type *</label>
+              <select id="enquiryType" name="enquiryType" required>
+                <option value="">Please select a enquiry type</option>
+                <option value="general">General enquiry</option>
+                <option value="productFeedback">Product feedback or enquiry</option>
+                <option value="productComplaint">Product complaint</option>
+              </select>       
+                 
+              <label for="productName">Product name</label>
+              <input id="productName" type="text" placeholder="Please enter the product name" name="productName" />
+              
+              <label for="productSize">Product size</label>
+              <input id="productSize" type="text" placeholder="Please enter the product size" name="productSize" />
+              
+              <label for="useByDate">Use-by date</label>
+              <input id="useByDate" type="text" placeholder="Please enter your use-by date" name="useByDate" />
+              
+              <label for="batchCode">Batch code</label>
+              <input id="batchCode" type="text" placeholder="Please enter your batch code" name="batchCode" />
+              
+              <label for="enquiry">Enquiry</label>
+              <textarea id="enquiry" placeholder="How can we help you?" name="enquiry" cols="30" rows="4" ></textarea>
+                               
+              <input id="submitBtn" type="submit" value="Submit" /> 
+
+            </form>
+        </div>
+        
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script type="text/javascript">
+
+          /* ensure that, if the enquiry type is "Product Complaint", product name, product size, use-by date and batch code are not empty. */
+          /* the follwong should be of course go to main.js or external - here for better readability */
+
+          // get select element
+          var enquiryType = document.getElementById("enquiryType");
+  
+          // listen for onchange event
+          enquiryType.onchange = validate;  
+          
+          // add or remove extra validation if it's a product complaint
+          function validate() {
+
+            // get current selectbox value
+            var selectedIndex = this.options.selectedIndex;
+            var val = this.options[selectedIndex].value;
+
+            // get extra form elements
+            var productName = document.getElementById("productName");
+            var productSize = document.getElementById("productSize");
+            var useByDate = document.getElementById("useByDate");
+            var batchCode =  document.getElementById("batchCode");
+
+            if (val === "productComplaint"){
+                // its a complain, add validation
+                productName.setAttribute("required", "true");
+                productSize.setAttribute("required", "true");
+                useByDate.setAttribute("required", "true");
+                batchCode.setAttribute("required", "true");                         
+            
+            } else {
+              // it isn't a complaint -  remove required
+              productName.removeAttribute("required");
+              productSize.removeAttribute("required");
+              useByDate.removeAttribute("required");
+              batchCode.removeAttribute("required");
+
+            }
+          };       
+        </script>
+    </body>
+</html>

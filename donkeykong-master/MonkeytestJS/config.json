@@ -1,0 +1,31 @@
+{
+    "facebookId": "000000000000000",
+
+    "local": {
+        "env": ["DEV URL OR PART OF"]
+    },
+    "stage": {
+        "env": ["STAGE URL OR PART OF"],
+        "facebookId": "222222222222222"
+    },
+    "beta": {
+        "env": ["BETA URL OR PART OF"],
+        "facebookId": "33333333333333333"
+    },
+    "production": {
+        "env": ["PRODUCTION URL OR PART OF"],
+        "facebookId": "4444444444444444444"
+    },
+
+    "globalTests": [
+        "global/is_html_w3c_valid.js"
+    ],
+    "pages": [
+        {
+            "url": "../",
+            "tests": [ "page/check_form_fields.js", "page/check_extra_form_fields.js" ]
+        }
+        
+    ],
+    "proxyUrl": "core/proxy.php?url="
+}
